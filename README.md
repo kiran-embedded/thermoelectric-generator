@@ -1,86 +1,104 @@
 <div align="center">
 
 # 💎 Thermoelectric Generator: Electricity from Heat
-### A Premium B.Sc Physics Project | University of Calicut
+### A Fusion of Applied Physics & High-End Web Engineering
 
-[![Report Stability](https://img.shields.io/badge/Report-Pixel_Perfect-gold?style=for-the-badge&logo=googlechrome&logoColor=white)](index.html)
-[![Presentation Quality](https://img.shields.io/badge/Presentation-Premium_Massive-blue?style=for-the-badge&logo=adobecreativetransform&logoColor=white)](presentation.html)
-[![Core Physics](https://img.shields.io/badge/Physics-Seebeck_Effect-F7DF1E?style=for-the-badge&logo=physics&logoColor=black)](https://en.wikipedia.org/wiki/Seebeck_effect)
+[![Report Stability](https://img.shields.io/badge/Aesthetics-Liquid_Glass-00f2ff?style=for-the-badge&logo=glassdoor&logoColor=white)](index.html)
+[![Presentation Quality](https://img.shields.io/badge/Shaders-Gold_Shiny-gold?style=for-the-badge&logo=adobecreativetransform&logoColor=white)](presentation.html)
+[![University](https://img.shields.io/badge/University-Calicut-800000?style=for-the-badge)](https://uoc.ac.in/)
 
 <br>
 
-**"Engineering the energy transition by harvesting invisible thermal waste."**
+**"Engineering the energy transition through pixel-perfect thermal harvesting."**
 
 ---
 
 </div>
 
-## ✨ High-End Web-to-Print Workflow
+## 🌊 Liquid Glass & Gold Shader Aesthetics
 
-Traditional tools like **Microsoft PowerPoint** or **Word** often fall short when building complex academic reports. They lack precise layout control, struggle with automated scaling, and do not support modern interactive animations.
+This project transcends traditional academic reporting by implementing a **Custom UI Engine**. The digital experience features:
 
-This repository leverages a **High-End Web Architecture** to solve these limitations:
-
-*   **Pixel-Perfect Precision**: Used **HTML5** and **Vanilla CSS3** to design a 25-page, print-ready A4 report.
-*   **Dynamic Presentation**: Created a **12-slide Premium Digital Presentation** with "Gold Shiny" interactive effects and glassmorphism.
-*   **Automated Export**: Integrated **Google Puppeteer** (a headless Chrome engine) to programmatically convert web pages into high-resolution PDFs and 4K PNGs.
-*   **Time Efficiency**: By using code, we avoided the manual time-sink of formatting in traditional tools, allowing for instant, error-free regeneration of the entire report book.
+*   **Liquid Glass Shaders**: Glassmorphism effects with real-time backdrop filtering, creating a translucent, fluid interface that feels alive.
+*   **Gold Shiny Animations**: Specialized CSS3 keyframes that simulate metallic luster and "shiny" light sweeps across critical data points.
+*   **Animated Mesh Gradients**: Deep-background shaders that drift across the presentation, ensuring a premium, high-stakes visual feel.
 
 ---
 
-## 🔬 Core Operation
+## 🛠️ Technical Architecture (The Web-Path)
 
-| Phase | Description | Key Tech |
+Traditional tools like **PowerPoint** and **Word** were bypassed due to significant limitations in layout precision and the manual time-sink of formatting. Instead, a **"Web-to-Print"** engine was developed:
+
+### The Tree Flow Diagram
+```mermaid
+graph TD
+    A[<b>Applied Physics</b><br/>Seebeck Effect Theory] --> B[<b>HTML5 Structure</b><br/>Semantic A4 Layouts]
+    B --> C[<b>CSS3 Styling</b><br/>Glassmorphism & Shaders]
+    C --> D[<b>Puppeteer Engine</b><br/>Headless Chrome Control]
+    D --> E[<b>Final Output</b><br/>Pixel-Perfect PDF Book]
+    D --> F[<b>High-End Assets</b><br/>4K PNG Visualizations]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#00f2ff,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#ffd700,stroke:#333,stroke-width:4px,color:#000
+    style E fill:#fff,stroke:#333,stroke-width:2px,color:#000
+    style F fill:#fff,stroke:#333,stroke-width:2px,color:#000
+```
+
+---
+
+## 🔬 System Workflow
+
+| Phase | Technical Layer | Result |
 | :--- | :--- | :--- |
-| **I. Generation** | Thermal waste converted to raw DC voltage via Seebeck Effect. | **TEC1-12715** Peltier Module |
-| **II. Stabilization** | Voltage boosted to 12V for active cooling and 5V for USB. | **XL6009** Boost Converter |
-| **III. Regulation** | Stable 5.0V output delivered for smartphone charging. | **USB 5V Output Module** |
-| **IV. Cooling** | 12V Active Fan maintains the critical temperature gradient. | **Aluminum Heatsink + Fan** |
+| **I. Core Theory** | Thermodynamics / Seebeck Effect | Mathematical modeling of Delta-T to EMF. |
+| **II. UI Design** | HTML5 / CSS3 / Glass Shaders | Premium visual interface with fluid layout. |
+| **III. Automation** | Node.js / Google Puppeteer | Programmatic conversion of web code to static documents. |
+| **IV. Precision** | Print-Media CSS Queries | Pixel-perfect A4 report book with zero formatting drift. |
 
 ---
 
-## 👥 Professional Credits & Institutions
+## 🏛️ Institutional Credits & Recognition
 
-This project was developed with the high standards of **Calicut University** and **Mar Dionysius College**.
+This research is conducted under the esteemed standards of **Calicut University** and hosted by **Mar Dionysius (MD) College, Pazhanji**.
 
-| Entity | Contribution |
-| :--- | :--- |
-| **Calicut University** | Academic Standards & Curriculum Validation |
-| **Mar Dionysius College** | Research Infrastructure & Lab Access |
-| **Dept. of Physics** | Technical Mentorship & Theoretical Guidance |
-| **Mrs. Rose Jose** | Project Guide (Assistant Professor) |
-| **Asst. Prof. Smt. Sreeakala R** | Head of Department |
+*   **University**: [Calicut University](https://uoc.ac.in/) (Academic Validation)
+*   **College**: [Mar Dionysius College, Pazhanji](http://mdcollege.edu.in/) (Research Infrastructure)
+*   **Department**: Department of Physics (Technical Support)
+*   **Project Guide**: **Mrs. Rose Jose** *(Assistant Professor)*
+*   **Head of Dept**: **Asst. Prof. Smt. Sreeakala R**
 
 **Project Team:** Vipin Krishna T.P, Muhammed Sinan P.S, Devadath C.M, Hana, Aparna T.M, Kiran.
 
 ---
 
-## 📈 Key Achievements
+## 📈 Executive Summary
 
-*   **100% Reliability**: Demonstrated consistent smartphone charging from a candle flame.
-*   **Thermal Efficiency**: Optimized gradient maintenance through an active self-sustaining cooling loop.
-*   **Professional Output**: Generated professional-grade academic documentation via automated web-engines.
+*   **Self-Sustaining**: The system powers its own 12V active cooling fan through harvesting extreme heat.
+*   **Verification**: Successfully charged modern smartphones directly from a candle flame.
+*   **Innovation**: Replaced standard report-writing tools with a custom automated web-engine for superior documentation.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Deployment & Generation
 
-To view the premium presentation or generate the report PDF locally:
+To experience the premium animations or generate the final report:
 
 ```bash
 # Clone the repository
 git clone https://github.com/kiran-embedded/thermoelectric-generator.git
 
-# Install dependencies for automated PDF generation
+# Install the Automated Web Engine
 npm install
 
-# Run the export engine
+# Generate the 25-page Pixel-Perfect Report
 node export-pdf.js
 ```
 
 <div align="center">
 
-*Developed for the Academic Year 2025–2026*
-**Science Applied to Solve Real-World Challenges.**
+*Academic Year 2025–2026*  
+**Physics. Engineering. Aesthetics.**
 
 </div>
