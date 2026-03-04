@@ -11,7 +11,12 @@
 
 <br>
 
+## 📖 Project Overview
+
+This project explores the conversion of **thermal energy (waste heat) into electrical power** using the **Seebeck Effect**. By utilizing high-grade Peltier modules (TEC1-12715) and an innovative self-sustaining active cooling system, we successfully generated a stable **5V USB output** capable of charging modern smartphones directly from a simple candle flame.
+
 **"A professional synthesis of thermal thermodynamics, modern web-to-print automation, and lossless media processing."**
+
 
 ---
 
