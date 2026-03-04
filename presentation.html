@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermoelectric Generator - Premium Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #020202;
+            --accent-color: #00f2ff;
+            --accent-glow: rgba(0, 242, 255, 0.4);
+            --secondary-accent: #7000ff;
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #9ca3af;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Montserrat', sans-serif;
+            --font-accent: 'Space+Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- POLISHED DYNAMIC BACKGROUND --- */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.15) 0, transparent 50%);
+            z-index: -2;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 70vw;
+            height: 70vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(120px);
+            opacity: 0.12;
+            z-index: -1;
+            pointer-events: none;
+            animation: drift 25s infinite alternate ease-in-out;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(112, 0, 255, 0.2) 0%, transparent 70%);
+            filter: blur(120px);
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+            animation: drift 20s infinite alternate-reverse ease-in-out;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(-15%, -15%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(15%, 15%) rotate(5deg);
+            }
+        }
+
+        /* --- PRESENTATION ENGINE --- */
+        #presentation {
+            width: 100%;
+            height: 100%;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            background: transparent;
+        }
+
+        #presentation::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5vh 5vw;
+            position: relative;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 80px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
+            transition: border 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Shine effect */
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.03),
+                    transparent);
+            transition: 0.6s ease;
+            pointer-events: none;
+        }
+
+        .slide[data-active="true"] .glass-card::after {
+            left: 100%;
+            transition: 1.5s ease 0.5s;
+        }
+
+        /* --- TYPOGRAPHY & CONTENT --- */
+        h1 {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 16px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+            max-width: 850px;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #fff;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        /* --- NAVIGATION & UI --- */
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--secondary-accent), var(--accent-color));
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 40px;
+            right: 50px;
+            font-family: var(--font-accent);
+            font-size: 1rem;
+            color: var(--text-dim);
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 1000;
+        }
+
+        .slide-counter span {
+            color: var(--accent-color);
+        }
+
+        .nav-hints {
+            position: fixed;
+            bottom: 30px;
+            right: 50px;
+            display: flex;
+            gap: 15px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.4;
+            z-index: 1000;
+        }
+
+        /* --- STAGGERED ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide[data-active="true"] .reveal:nth-child(1) {
+            transition-delay: 0.1s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide[data-active="true"] .reveal:nth-child(2) {
+            transition-delay: 0.2s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide[data-active="true"] .reveal:nth-child(3) {
+            transition-delay: 0.3s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide[data-active="true"] .reveal:nth-child(4) {
+            transition-delay: 0.4s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide[data-active="true"] .reveal:nth-child(5) {
+            transition-delay: 0.5s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- GRID & LAYOUTS --- */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 480px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .image-container:hover img {
+            transform: scale(1.08);
+            opacity: 1;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+            pointer-events: none;
+        }
+
+        /* Micro-Widgets */
+        .widget-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s;
+        }
+
+        .widget-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(10px);
+        }
+
+        .widget-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1300px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            p {
+                font-size: 1.3rem;
+            }
+
+            .content-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .image-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="bg-mesh"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="slide-counter" id="counter">PAGE <span>01</span> / 12</div>
+    <div class="nav-hints">NAVIGATE VIA ARROWS OR SCROLL</div>
+
+    <main id="presentation">
+        <!-- SLIDE 1: INTRO -->
+        <section class="slide" id="slide1">
+            <div class="glass-card" style="text-align: center; align-items: center;">
+                <h2 class="reveal">2026 PROJECT REPORT</h2>
+                <h1 class="reveal">THERMOELECTRIC<br>GENERATOR</h1>
+                <p class="reveal" style="font-family: var(--font-accent); letter-spacing: 2px;">CLEAN ENERGY FROM WASTE
+                    HEAT</p>
+
+                <div class="reveal"
+                    style="display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; justify-content: center;">
+                    <span
+                        style="background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; border: 1px solid var(--glass-border);">Vipin
+                        Krishna</span>
+                    <span
+                        style="background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; border: 1px solid var(--glass-border);">Muhammed
+                        Sinan</span>
+                    <span
+                        style="background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; border: 1px solid var(--glass-border);">Devadath</span>
+                    <span
+                        style="background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; border: 1px solid var(--glass-border);">Hana</span>
+                    <span
+                        style="background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; border: 1px solid var(--glass-border);">Aparna</span>
+                    <span
+                        style="background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; border: 1px solid var(--glass-border);">Kiran</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: THE PROBLEM -->
+        <section class="slide" id="slide2">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">THE CHALLENGE</h2>
+                        <h1 class="reveal">ENERGY LOSS</h1>
+                        <p class="reveal">Modern industrial systems lose over <span class="highlight">60%</span> of
+                            their input energy as invisible waste heat.</p>
+                        <p class="reveal">Our project turns this <span class="highlight">thermal waste</span> into an
+                            electrical asset, creating a circular energy loop.</p>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/project view 2.jpg" alt="Thermal Waste">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: PHYSICS -->
+        <section class="slide" id="slide3">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">THE SCIENCE</h2>
+                        <h1 class="reveal">SEEBECK EFFECT</h1>
+                        <p class="reveal">Physics discovered by <span class="highlight">Seebeck</span> in 1821. Heat
+                            flux directly creates an electric potential.</p>
+                        <div class="widget-item reveal">
+                            <div class="widget-icon">🌡️</div>
+                            <div>
+                                <strong style="display: block;">Delta T</strong>
+                                <span style="font-size: 0.9rem; color: var(--text-dim);">The bigger the temperature gap,
+                                    the more power.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-container reveal"
+                        style="background: #000; display:flex; align-items:center; justify-content:center;">
+                        <svg viewBox="0 0 200 120" style="width: 80%; opacity: 0.8;">
+                            <rect x="20" y="40" width="160" height="40" rx="10" fill="none" stroke="var(--accent-color)"
+                                stroke-width="1.5" stroke-dasharray="4 2" />
+                            <text x="35" y="65" fill="var(--accent-color)" font-family="Space Grotesk"
+                                font-size="10">HOT</text>
+                            <text x="135" y="65" fill="var(--text-dim)" font-family="Space Grotesk"
+                                font-size="10">COLD</text>
+                            <circle cx="100" cy="60" r="3" fill="var(--accent-color)">
+                                <animate attributeName="cx" from="40" to="160" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: CARRIERS -->
+        <section class="slide" id="slide4">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">ATOMIC LEVEL</h2>
+                        <h1 class="reveal">CARRIER DRIFT</h1>
+                        <p class="reveal">Heat provides kinetic energy to <span class="highlight">Charge Carriers</span>
+                            inside semiconductors.</p>
+                        <div class="reveal"
+                            style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                            <div
+                                style="padding: 20px; border-left: 2px solid #00f2ff; background: rgba(0,242,255,0.03);">
+                                <strong style="color: #fff;">N-Type</strong><br><span
+                                    style="font-size: 0.9rem;">Electrons drift cold.</span>
+                            </div>
+                            <div
+                                style="padding: 20px; border-left: 2px solid #7000ff; background: rgba(112,0,255,0.03);">
+                                <strong style="color: #fff;">P-Type</strong><br><span style="font-size: 0.9rem;">Holes
+                                    drift cold.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-container reveal">
+                        <div
+                            style="width:100%; height:100%; display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; padding:40px; opacity:0.1;">
+                            <div style="border: 1px solid var(--accent-color); border-radius: 50%;"></div>
+                            <div style="border: 1px solid var(--accent-color); border-radius: 50%;"></div>
+                            <div style="border: 1px solid var(--accent-color); border-radius: 50%;"></div>
+                            <div style="border: 1px solid var(--accent-color); border-radius: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: HARDWARE -->
+        <section class="slide" id="slide5">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">THE HEART</h2>
+                        <h1 class="reveal">PELTIER CELL</h1>
+                        <p class="reveal">The <span class="highlight">TEC1-12715</span> Bismuth Telluride module.</p>
+                        <ul class="reveal" style="list-style: none; font-size: 1.2rem; line-height: 2;">
+                            <li>✓ Robust Ceramic Layer</li>
+                            <li>✓ 127 Thermocouple Pairs</li>
+                            <li>✓ Solid-State Reliability</li>
+                        </ul>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/photo_2026-02-26_15-44-30.jpg" alt="Peltier Cell">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: COOLING -->
+        <section class="slide" id="slide6">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">THERMODYNAMICS</h2>
+                        <h1 class="reveal">THERMAL GAP</h1>
+                        <p class="reveal">Without cooling, system reaches <span class="highlight">thermal
+                                equilibrium</span> and power stops.</p>
+                        <p class="reveal">Our 12V fan ensures the <span class="highlight">Cold Side</span> stays cold,
+                            maintaining the vital gradient.</p>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/fan.jpg" alt="Cooling Fan">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: REGULATION -->
+        <section class="slide" id="slide7">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">ELECTRONICS</h2>
+                        <h1 class="reveal">POWER STAGES</h1>
+                        <p class="reveal">Raw module output is chaotic. We use <span class="highlight">Two-Stage
+                                Regulation</span>.</p>
+                        <div class="widget-item reveal">
+                            <div class="widget-icon">⚡</div>
+                            <div><strong>Booster (XL6009)</strong>: 12V for the Fan</div>
+                        </div>
+                        <div class="widget-item reveal">
+                            <div class="widget-icon">📱</div>
+                            <div><strong>Regulator (USB)</strong>: 5.0V for the Phone</div>
+                        </div>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/buck booster.jpg" alt="Power Stages">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: CHASSIS -->
+        <section class="slide" id="slide8">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">ENGINEERING</h2>
+                        <h1 class="reveal">ROBUST BUILD</h1>
+                        <p class="reveal">Built for <span class="highlight">Extreme Conditions</span> using fireproof
+                            materials.</p>
+                        <div class="reveal" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <span
+                                style="border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 12px; font-size: 1rem;">Ceramic
+                                Tiles</span>
+                            <span
+                                style="border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 12px; font-size: 1rem;">Structural
+                                PVC</span>
+                            <span
+                                style="border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 12px; font-size: 1rem;">Aluminum
+                                Fins</span>
+                        </div>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/project-setup.jpg" alt="Build Qualtiy">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: OPERATION -->
+        <section class="slide" id="slide9">
+            <div class="glass-card">
+                <h2 class="reveal">THE OPERATION</h2>
+                <h1 class="reveal">LOGIC FLOW</h1>
+                <div class="content-layout">
+                    <div>
+                        <p class="reveal">Heat → Seebeck Effect → Raw DC → <span class="highlight">XL6009 Boost</span> →
+                            Fan Activation → <span class="highlight">Thermal Lock</span> → USB 5V Output.</p>
+                        <p class="reveal" style="font-size: 1.1rem; color: var(--accent-color);">It is a self-sustaining
+                            active cooling loop.</p>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/operational-flow.png" alt="Logic Flow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: REAL WORLD -->
+        <section class="slide" id="slide10">
+            <div class="glass-card">
+                <div class="content-layout">
+                    <div>
+                        <h2 class="reveal">VERIFICATION</h2>
+                        <h1 class="reveal">LIVE RESULTS</h1>
+                        <p class="reveal">Experimental proof: Successful <span class="highlight">Smartphone
+                                Charging</span> induced by a candle flame.</p>
+                        <div class="widget-item reveal">
+                            <div class="widget-icon">✔</div>
+                            <div><strong>Success Rate</strong>: 100% Reliable Boot</div>
+                        </div>
+                    </div>
+                    <div class="image-container reveal">
+                        <img src="svg/phone-charging-test.jpg" alt="Charge Test">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: VISION -->
+        <section class="slide" id="slide11">
+            <div class="glass-card">
+                <h2 class="reveal">THE FUTURE</h2>
+                <h1 class="reveal">APPLICATIONS</h1>
+                <div class="reveal"
+                    style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">🚀</div>
+                        <strong>SPACE</strong><br><span style="font-size: 0.8rem; color: var(--text-dim);">RTG
+                            Generators</span>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">🏭</div>
+                        <strong>INDUSTRY</strong><br><span style="font-size: 0.8rem; color: var(--text-dim);">Waste
+                            Recovery</span>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">🏕️</div>
+                        <strong>REMOTE</strong><br><span style="font-size: 0.8rem; color: var(--text-dim);">Emergency
+                            Kits</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: OUTRO -->
+        <section class="slide" id="slide12">
+            <div class="glass-card" style="text-align: center; align-items: center;">
+                <h2 class="reveal">PROJECT COMPLETE</h2>
+                <h1 class="reveal">THANK YOU</h1>
+                <p class="reveal" style="max-width: 600px;">Physics applied to solve <span class="highlight">real-world
+                        energy</span> challenges.</p>
+                <div class="reveal"
+                    style="margin-top: 50px; padding: 20px 40px; border: 1px dashed var(--accent-color); border-radius: 12px; font-family: var(--font-accent); color: var(--accent-color);">
+                    ANY QUESTIONS?
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const container = document.getElementById('presentation');
+        const counterNum = document.querySelector('#counter span');
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progressBar');
+
+        // Observer to update counter and active state
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const slideId = entry.target.id;
+                    const slideNum = parseInt(slideId.replace('slide', ''));
+                    counterNum.innerText = slideNum.toString().padStart(2, '0');
+
+                    // Update Progress Bar
+                    const progress = (slideNum / slides.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+
+                    // Mark active for animations
+                    slides.forEach(s => s.setAttribute('data-active', 'false'));
+                    entry.target.setAttribute('data-active', 'true');
+                }
+            });
+        }, { threshold: 0.6 });
+
+        slides.forEach(slide => observer.observe(slide));
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                container.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+            }
+            if (e.key === 'ArrowLeft') {
+                container.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+            }
+        });
+
+        // Touch swipe support (simple)
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        container.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        container.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            if (touchendX < touchstartX - 50) container.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+            if (touchendX > touchstartX + 50) container.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

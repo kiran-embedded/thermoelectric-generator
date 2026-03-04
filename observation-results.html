@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observation Results - Thermoelectric Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #0b1121;
+            --accent-blue: #4facfe;
+            --accent-orange: #ff8c42;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+        }
+
+        /* Forced 16:9 Container */
+        .slide-container {
+            width: 100vw;
+            height: 56.25vw;
+            max-height: 100vh;
+            max-width: 177.78vh;
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 1);
+        }
+
+        /* Circuit Background - Dimmed for Depth */
+        .circuit-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.25;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .blue-glow {
+            filter: drop-shadow(0 0 4px var(--accent-blue)) drop-shadow(0 0 8px var(--accent-blue));
+        }
+
+        .orange-glow {
+            filter: drop-shadow(0 0 4px var(--accent-orange)) drop-shadow(0 0 8px var(--accent-orange));
+        }
+
+        .trace {
+            fill: none;
+            stroke-width: 1.2;
+            stroke-linecap: round;
+            stroke-dasharray: none;
+            stroke-dashoffset: 0;
+        }
+
+        .node {
+            r: 2.5;
+        }
+
+        /* Main Content Container */
+        .content-container {
+            position: relative;
+            z-index: 10;
+            width: 98%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5rem;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 7.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(79, 172, 254, 0.6);
+        }
+
+        .photo-grid {
+            display: flex;
+            gap: 6rem;
+            width: 100%;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+
+        .photo-card {
+            flex: 1;
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 40px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 950px;
+            transform: translateY(-40px);
+            transition: none;
+        }
+
+        .photo-card.blue-theme {
+            border: 6px solid var(--accent-blue);
+            box-shadow: 0 60px 120px rgba(79, 172, 254, 0.5), inset 0 0 60px rgba(79, 172, 254, 0.25);
+        }
+
+        .photo-card.orange-theme {
+            border: 6px solid var(--accent-orange);
+            box-shadow: 0 60px 120px rgba(255, 140, 66, 0.5), inset 0 0 60px rgba(255, 140, 66, 0.25);
+        }
+
+        .image-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+        }
+
+        .caption {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+        }
+
+        /* Subtle Vignette for depth */
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide-container">
+        <div class="circuit-layer">
+            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+                <g class="blue-glow" stroke="#4facfe">
+                    <path class="trace" d="M850 0 V40 L830 60 V100 L810 120 V180" opacity="0.8" />
+                    <path class="trace" d="M820 0 V50 L800 70 V110 L780 130 V180" opacity="0.6" />
+                    <path class="trace" d="M790 0 V60 L770 80 V120 L750 140 V180" opacity="0.5" />
+
+                    <path class="trace" d="M870 0 V40 L890 60 V100 L910 120 V180" opacity="0.8" />
+                    <path class="trace" d="M900 0 V50 L920 70 V110 L940 130 V180" opacity="0.6" />
+
+                    <circle class="node" cx="810" cy="120" fill="#fff" />
+                    <circle class="node" cx="910" cy="120" fill="#fff" />
+                </g>
+
+                <g class="orange-glow" stroke="#ff8c42">
+                    <path class="trace" d="M0 260 H60 L80 280 H140" opacity="0.9" />
+                    <path class="trace" d="M0 290 H70 L90 310 H150" opacity="0.8" />
+                    <path class="trace" d="M0 320 H80 L100 340 H140" opacity="0.7" />
+                    <path class="trace" d="M0 350 H70 L50 370 H120" opacity="0.8" />
+                    <path class="trace" d="M0 380 H60 L40 400 H110" opacity="0.7" />
+
+                    <line x1="140" y1="280" x2="170" y2="280" stroke="#fff" stroke-width="2" />
+                    <line x1="150" y1="310" x2="180" y2="310" stroke="#fff" stroke-width="2" />
+
+                    <circle class="node" cx="80" cy="280" fill="#ff8c42" />
+                    <circle class="node" cx="90" cy="310" fill="#ff8c42" />
+                </g>
+            </svg>
+        </div>
+
+        <main class="content-container">
+            <h1>Experimental Testing</h1>
+
+            <div class="photo-grid">
+                <div class="photo-card blue-theme">
+                    <div class="image-wrapper">
+                        <img src="svg/candle-08.png" alt="Thermal Observation 1">
+                    </div>
+                    <div class="caption">Candle Flame Heating (3 Mins)</div>
+                </div>
+
+                <div class="photo-card orange-theme">
+                    <div class="image-wrapper">
+                        <img src="svg/candle_4k.png" alt="Thermal Observation 2">
+                    </div>
+                    <div class="caption">Cooling Fan Starts Spinning</div>
+                </div>
+            </div>
+
+            <div class="footer-note">Heat Energy Converting to Electrical Power</div>
+        </main>
+    </div>
+
+</body>
+
+</html>

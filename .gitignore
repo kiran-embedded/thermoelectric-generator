@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+venv/
+
+# Generated PDFs (too large for git, ~11MB each)
+*.pdf
+
+# Generated documents
+*.docx
+*.pptx
+
+# Generated 4K images (large files)
+*-4k.png
+svg/candle_4k.png
+
+# Lock files
+package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.~lock.*
+*.swp
+*.swo
+*~
+
+# Test directories
+test_docx/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# PGM image files (large binary)
+*.pgm

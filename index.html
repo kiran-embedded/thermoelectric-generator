@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermoelectric Generator Project Report</title>
+
+    <!-- High-End Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Base Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            padding: 50px 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* A4 Page Dimensions (210 x 297 mm) */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* EXACT FRAME DESIGN - Background Layer */
+        .page-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* STRICT SAFE ZONE */
+        .content {
+            position: absolute;
+            top: 135px;
+            bottom: 180px;
+            left: 85px;
+            right: 85px;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* High-End Typography */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .chapter-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 35%;
+            width: 30%;
+            height: 1.5px;
+            background: #000;
+        }
+
+        .chapter-number {
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-weight: bold;
+            letter-spacing: 5px;
+            color: #555;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .chapter-title {
+            font-family: "Times New Roman", serif;
+            font-size: 21pt;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        h3 {
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 800;
+            color: #000;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        p {
+            font-family: inherit;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #111;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            padding-left: 25px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #111;
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+
+        strong {
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Editorial Page Number Design */
+        .page-footer {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+        }
+
+        .page-number-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-number-line {
+            width: 25px;
+            height: 1.5px;
+            background-color: #000;
+        }
+
+        .page-number-ornament {
+            width: 5px;
+            height: 5px;
+            background-color: #000;
+            transform: rotate(45deg);
+        }
+
+        .page-number-text {
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 3px;
+            margin: 0 4px;
+        }
+
+        /* Front Matter Specific Styles */
+        .cover-text {
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: inherit;
+            color: #000;
+        }
+
+        .cover-title {
+            font-family: inherit;
+            font-size: 38px;
+            font-weight: 800;
+            margin: 35px 0;
+            line-height: 1.25;
+            letter-spacing: 2px;
+            color: #000;
+        }
+
+        .cover-subtitle {
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 50px;
+            letter-spacing: 1.5px;
+        }
+
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            align-items: flex-end;
+        }
+
+        .signature-block {
+            width: 200px;
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 1.5px solid #000;
+            padding-top: 8px;
+            margin-top: 40px;
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Ultra Premium Certificate Styles */
+        .cert-box {
+            border: 2px solid #000;
+            padding: 4px;
+            height: 100%;
+            position: relative;
+        }
+
+        .cert-inner-box {
+            border: 1px solid #000;
+            height: 100%;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background: #fff;
+        }
+
+        .cert-title-main {
+            font-family: inherit;
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .cert-divider {
+            width: 100px;
+            height: 1.5px;
+            background: #000;
+            margin: 0 auto 25px auto;
+        }
+
+        .cert-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #111;
+            line-height: 1.8;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .cert-project-title {
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 800;
+            color: #000;
+            margin: 20px 0;
+            line-height: 1.5;
+            letter-spacing: 1px;
+        }
+
+        /* Table of Contents */
+        .toc-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            position: relative;
+        }
+
+        .toc-row::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 4px;
+            border-bottom: 1px dotted #888;
+            z-index: 1;
+        }
+
+        .toc-title {
+            background: #fff;
+            padding-right: 10px;
+            z-index: 2;
+            position: relative;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .toc-page {
+            background: #fff;
+            padding-left: 10px;
+            z-index: 2;
+            position: relative;
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Image and Diagram Styling */
+        .image-box {
+            width: fit-content;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            padding: 8px;
+            background: #fff;
+            border: 1.5px solid #000;
+            outline: 1px solid #ddd;
+            outline-offset: -5px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .image-box::before,
+        .image-box::after,
+        .image-box-corner-tr,
+        .image-box-corner-bl {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #000;
+            z-index: 5;
+        }
+
+        .image-box::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .image-box::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .image-box-corner-tr {
+            top: -2px;
+            right: -2px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .image-box-corner-bl {
+            bottom: -2px;
+            left: -2px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .image-box svg,
+        .image-box img {
+            width: auto;
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .image-box img:hover {
+            transform: scale(1.02);
+        }
+
+        .caption {
+            text-align: center;
+            font-family: inherit;
+            font-size: 10px;
+            margin-top: -4px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* 2x2 Component Grid */
+        .component-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        .component-item {
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .component-item img {
+            width: 100%;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+            margin-bottom: 6px;
+            background: #fff;
+            mix-blend-mode: multiply;
+            filter: brightness(1.08) contrast(1.1);
+            clip-path: inset(8px);
+        }
+
+        .component-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .component-label {
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 800;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* Highlight box for transitions */
+        .transition-box {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-left: 4px solid #000;
+            padding: 12px 18px;
+            margin-top: auto;
+            margin-bottom: 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 14px;
+            color: #000;
+            text-align: justify;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 15px;
+            text-align: center;
+            font-family: inherit;
+            font-size: 18px;
+            font-style: italic;
+            margin: 15px 0;
+            color: #000;
+            position: relative;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            border: 2px solid #000;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 10px 8px;
+            text-align: center;
+            font-family: inherit;
+            font-size: 11.5px;
+            color: #000;
+        }
+
+        th {
+            background-color: #eee;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 10px;
+            color: #000;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* PDF PRINT SETTINGS */
+        @media print {
+            body {
+                background-color: transparent;
+                padding: 0;
+                margin: 0;
+                gap: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            * {
+                color: #000 !important;
+            }
+
+            .transition-box {
+                background-color: #f4f4f4 !important;
+            }
+
+            .cert-title-main,
+            .cover-title {
+                color: #000 !important;
+                background: none !important;
+                -webkit-text-fill-color: #000 !important;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MASTER SVG BACKGROUND & DEFS -->
+    <svg id="master-borders" width="0" height="0" style="display:none;">
+        <defs>
+            <g id="editorial-bw-frame">
+                <rect x="40" y="40" width="714" height="1043" fill="none" stroke="#000" stroke-width="3" />
+                <rect x="48" y="48" width="698" height="1027" fill="none" stroke="#000" stroke-width="0.75" />
+                <!-- Modern Sharp Corner Accents -->
+                <path d="M 35 35 L 55 35 L 55 55 L 43 55 L 43 43 L 35 43 Z" fill="#000" />
+                <path d="M 759 35 L 739 35 L 739 55 L 751 55 L 751 43 L 759 43 Z" fill="#000" />
+                <path d="M 35 1088 L 55 1088 L 55 1068 L 43 1068 L 43 1080 L 35 1080 Z" fill="#000" />
+                <path d="M 759 1088 L 739 1088 L 739 1068 L 751 1068 L 751 1080 L 759 1080 Z" fill="#000" />
+            </g>
+            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6"
+                orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#000" />
+            </marker>
+        </defs>
+    </svg>
+
+    <!-- ==============================================
+         1. COVER PAGE
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content"
+            style="justify-content: flex-start; align-items: center; text-align: center; padding-top: 30px;">
+            <img src="svg/college-logo-v3.png" alt="Mar Dionysius College Logo"
+                style="width: 130px; height: auto; object-fit: contain; margin-bottom: 15px;">
+
+            <h2
+                style="font-family: 'Cinzel', serif; font-size: 21pt; font-weight: bold; margin: 0; color: #000; letter-spacing: 1px;">
+                MAR DIONYSIUS COLLEGE</h2>
+            <p
+                style="font-family: 'Montserrat', sans-serif; font-size: 10.5pt; margin: 5px 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 500;">
+                PAZHANJI, THRISSUR</p>
+            <p
+                style="font-family: 'Montserrat', sans-serif; font-size: 11pt; margin: 5px 0; text-transform: none; letter-spacing: 2.5px; font-weight: 600;">
+                Department of Physics</p>
+
+            <div style="width: 60%; margin: 12px auto; border-top: 1px solid black;"></div>
+
+            <p
+                style="font-family: 'Montserrat', sans-serif; font-size: 10.5pt; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; color: #000; font-weight: 600;">
+                A PROJECT REPORT ON</p>
+
+            <!-- Solid Black Title for B&W Print -->
+            <div style="margin: 8px 0 15px 0;">
+                <h1
+                    style="font-family: 'Cinzel', serif; font-size: 24pt; font-weight: bold; line-height: 1.2; margin: 0; letter-spacing: 1px; text-transform: uppercase;">
+                    THERMOELECTRIC GENERATOR:<br>ELECTRICITY FROM HEAT
+                </h1>
+            </div>
+
+            <p class="cover-text"
+                style="font-family: 'Times New Roman', serif; font-size: 12pt; margin-bottom: 12px; font-style: italic; line-height: 1.6; color: #111;">
+                Submitted to the University of Calicut<br>
+                in partial fulfilment of the requirements for the award of the degree of
+            </p>
+            <h2 class="cover-subtitle"
+                style="margin-top: 5px; margin-bottom: 15px; font-size: 14.5pt; font-weight: 700; letter-spacing: 1.5px; font-family: 'Montserrat', sans-serif; color: #000;">
+                B.Sc Physics</h2>
+
+            <div style="margin-top: 15px; width: 100%;">
+                <p class="cover-text"
+                    style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 10.5pt; letter-spacing: 2px; margin-bottom: 15px;">
+                    SUBMITTED BY:</p>
+                <div style="width: 500px; margin: 0 auto; text-align: left;">
+                    <div
+                        style="display: grid; grid-template-columns: 120px 30px 350px; width: 100%; font-family: 'Montserrat', sans-serif; font-size: 12.5pt; font-weight: bold; line-height: 1.8; align-items: center;">
+                        <div style="letter-spacing: 1px;">NAME</div>
+                        <div style="text-align: center;">:</div>
+                        <div id="cover-name"
+                            style="text-transform: uppercase; letter-spacing: 1px; font-family: 'Cinzel', serif; white-space: nowrap;">
+                        </div>
+
+                        <div style="letter-spacing: 1px;">REG NO</div>
+                        <div style="text-align: center;">:</div>
+                        <div id="cover-reg" style="letter-spacing: 1px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 55px; width: 100%;">
+                <p class="cover-text"
+                    style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 10.5pt; letter-spacing: 2px; margin-bottom: 10px;">
+                    UNDER THE SUPERVISION OF:</p>
+                <h3
+                    style="font-family: 'Cinzel', serif; font-size: 17pt; font-weight: bold; margin: 0; border: none; letter-spacing: 1px;">
+                    Mrs. ROSE JOSE</h3>
+                <p class="cover-text"
+                    style="font-family: 'Montserrat', sans-serif; font-size: 12pt; font-weight: 500; color: #333; margin-bottom: 20px;">
+                    (Assistant Professor, Department of Physics)</p>
+
+                <p
+                    style="font-family: 'Montserrat', sans-serif; font-size: 13pt; font-weight: bold; letter-spacing: normal; margin: 0; color: #000; text-align: center;">
+                    (2025&ndash;2026)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         2. CERTIFICATE PAGE
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="cert-box">
+                <div class="cert-inner-box">
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; margin-bottom: 35px; border-bottom: 1.5px solid #eee; padding-bottom: 25px;">
+                        <img src="svg/college-logo-v3.png" alt="College Logo"
+                            style="width: 100px; height: auto; object-fit: contain; filter: contrast(1.1);">
+                        <div style="text-align: left; font-family: inherit;">
+                            <h2 style="font-size: 18px; font-weight: 800; margin: 0; color: #000; letter-spacing: 1px;">
+                                MAR DIONYSIUS COLLEGE</h2>
+                            <p
+                                style="font-family: inherit; font-size: 13px; font-weight: 700; margin: 3px 0; letter-spacing: 0.5px;">
+                                Pazhanji, Thrissur</p>
+                            <div style="height: 1.5px; width: 40px; background: #000; margin: 8px 0; opacity: 0.3;">
+                            </div>
+                            <p
+                                style="font-family: inherit; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #000;">
+                                Department of Physics</p>
+                        </div>
+                    </div>
+
+                    <svg viewBox="0 0 400 55" xmlns="http://www.w3.org/2000/svg"
+                        style="width: 100%; max-width: 380px; display: block; margin: 10px auto 0 auto; overflow: visible;">
+                        <text x="50%" y="42" text-anchor="middle" font-family="Cinzel, serif" font-size="38"
+                            font-weight="900" fill="#000" letter-spacing="8">CERTIFICATE</text>
+                    </svg>
+                    <div class="cert-divider" style="margin-bottom: 30px;"></div>
+
+                    <p class="cert-text" style="text-align: justify; text-align-last: center; line-height: 2;">
+                        This is to certify that <span id="cert-name"
+                            style="font-family: inherit; font-weight: 700; font-style: italic; text-transform: none; border: none;"></span>
+                        is a
+                        bonafide student of 6th Semester, Department of Physics, Mar Dionysius College, Pazhanji and
+                        the
+                        project entitled:
+                    </p>
+
+                    <h4 class="cert-project-title">"THERMOELECTRIC GENERATOR:<br>ELECTRICITY FROM HEAT"</h4>
+
+                    <p class="cert-text"
+                        style="text-align: justify; text-align-last: center; line-height: 2; margin-top: 15px;">
+                        is a genuine work done by him in partial fulfillment of the award of the degree of
+                        Bachelor
+                        of Science (B.Sc. Physics) of University of Calicut.
+                    </p>
+
+                    <div class="signature-row" style="margin-top: auto;">
+                        <div class="signature-block">
+                            <div class="signature-line">Mrs. ROSE JOSE<br><span
+                                    style="font-size: 10px; text-transform: none; font-weight: 500; font-family: inherit; font-style: italic;">(Project
+                                    Guide)</span></div>
+                        </div>
+                        <div class="signature-block">
+                            <div class="signature-line">ASST. PROF. SMT. SREEKALA R<br><span
+                                    style="font-size: 10px; text-transform: none; font-weight: 500; font-family: inherit; font-style: italic;">(Head
+                                    of Department)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="signature-row" style="margin-top: 40px;">
+                        <div class="signature-block" style="text-align: left; width: 50%;">
+                            <p style="margin:0; font-family: inherit; font-size: 11px; font-weight: 700;">
+                                PLACE: <span
+                                    style="font-weight: 400; border-bottom: 1px dotted #000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                            <p
+                                style="margin:0; font-family: inherit; font-size: 11px; font-weight: 700; margin-top: 10px;">
+                                DATE: <span
+                                    style="font-weight: 400; border-bottom: 1px dotted #000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </div>
+                        <div class="signature-block">
+                            <div class="signature-line">EXTERNAL EXAMINOR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">II</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         3. DECLARATION PAGE
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-title">Declaration</div>
+            </div>
+
+            <p style="line-height: 2;">I, <span id="decl-name"
+                    style="font-family: inherit; font-weight: 700; font-style: italic; text-transform: none;"></span>,
+                hereby
+                declare that the project entitled <strong>"THERMOELECTRIC GENERATOR: ELECTRICITY FROM HEAT"</strong>
+                is
+                the record of original work carried out by me, under the guidance and supervision of Asst. Prof.
+                Smt.
+                Rose
+                Jose.</p>
+
+            <p style="line-height: 2;">I also declare that this project has not previously formed the basis for the
+                award of any degree or another similar title of recognition of any other university.</p>
+
+            <div
+                style="margin-top: auto; margin-bottom: 125px; display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
+                <div style="font-family: inherit; font-size: 14px; line-height: 2;">
+                    <p style="margin: 0 0 15px 0; font-weight: 700; color: #333;">Place: <span
+                            style="font-weight: 500; border-bottom: 1.5px dotted #000; display: inline-block; min-width: 120px;">&nbsp;</span>
+                    </p>
+                    <p style="margin: 0; font-weight: 700; color: #333;">Date : <span
+                            style="font-weight: 500; border-bottom: 1px dotted #000; display: inline-block; min-width: 120px;">&nbsp;</span>
+                    </p>
+                </div>
+
+                <div style="text-align: center; width: 220px;">
+                    <div style="margin-bottom: 5px;">
+                        <div style="border-bottom: 1.5px solid #000; width: 100%; margin-bottom: 8px;"></div>
+                    </div>
+                    <div>
+                        <p
+                            style="margin: 0; font-family: inherit; font-size: 13px; font-weight: 800; letter-spacing: 1px;">
+                            Name & Signature</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">III</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         4. ACKNOWLEDGEMENT
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-title">Acknowledgement</div>
+            </div>
+
+            <p style="margin-bottom: 10px;">I express my sincere gratitude to my Research Guide, <strong>Asst. Prof.
+                    Smt. Rose Jose</strong>, Department of Physics, for her constant encouragement, valuable
+                guidance,
+                and continuous support from the initial stage to the final level, which enabled me to develop a
+                clear
+                understanding of the subject and successfully complete this project.</p>
+
+            <p style="margin-bottom: 10px;">I express my respectful thanks to <strong>Asst. Prof. Smt. Sreekala
+                    R</strong>, Head of the Department of Physics, for her encouragement, support, and valuable
+                suggestions throughout the course of this work.</p>
+
+            <p style="margin-bottom: 10px;">I extend my heartfelt thanks to <strong>Dr. Thomas Mathew</strong>,
+                Principal, Mar Dionysius College, Pazhanji, for providing the necessary facilities and encouragement
+                to
+                carry out this project successfully.</p>
+
+            <p style="margin-bottom: 10px;">I also express my sincere thanks to <strong>Asst. Prof. Smt.
+                    Kalanjanan</strong>, Lab Technician <strong>Deepthi Praveen</strong>, and Lab Assistant
+                <strong>Reena Kunjappan</strong>, and all the faculty members of the Department of Physics for their
+                support and cooperation.
+            </p>
+
+            <p style="margin-bottom: 10px;">Last but not least, I express my deepest gratitude to my beloved
+                parents,
+                teachers, and friends for their constant support, inspiration, encouragement, and strength
+                throughout
+                the completion of this project.</p>
+
+            <div style="margin-top: auto; margin-bottom: 50px; text-align: right; padding-right: 20px;">
+                <p
+                    style="font-family: inherit; font-size: 14px; font-weight: 600; font-style: italic; color: #333; margin-bottom: 15px;">
+                    With affectionate regards,</p>
+                <div style="display: inline-block; text-align: left; min-width: 280px; position: relative;">
+                    <!-- High-End Decorative Bar (Single) -->
+                    <div
+                        style="border-top: 1px solid #eee; padding-top: 15px; margin-top: 12px; text-align: center; position: relative;">
+                        <!-- Central Ornament Feel -->
+                        <div
+                            style="position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 40px; height: 1px; background: #bbb;">
+                        </div>
+                        <h3
+                            style="font-family: inherit; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin: 0; color: #222; border: none !important;">
+                            GROUP MEMBERS</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">IV</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         5. GROUP MEMBERS PAGE
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content" style="justify-content: center; align-items: center;">
+            <div class="chapter-header">
+                <div class="chapter-title">Group Members</div>
+            </div>
+
+
+
+            <div
+                style="width: 100%; max-width: 480px; margin: 40px auto 0 auto; border: 2px solid #000; padding: 40px; background: #fff; position: relative;">
+
+                <!-- Corner Accents -->
+                <div
+                    style="position: absolute; top: -2px; left: -2px; width: 10px; height: 10px; border-top: 3px solid #000; border-left: 3px solid #000;">
+                </div>
+                <div
+                    style="position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; border-top: 3px solid #000; border-right: 3px solid #000;">
+                </div>
+                <div
+                    style="position: absolute; bottom: -2px; left: -2px; width: 10px; height: 10px; border-bottom: 3px solid #000; border-left: 3px solid #000;">
+                </div>
+                <div
+                    style="position: absolute; bottom: -2px; right: -2px; width: 10px; height: 10px; border-bottom: 3px solid #000; border-right: 3px solid #000;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0;">
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: flex-start; gap: 30px; padding: 15px 0;">
+                        <span
+                            style="font-family: inherit; font-size: 14px; font-weight: 700; color: #666; letter-spacing: 2px;">01</span>
+                        <strong
+                            style="font-family: inherit; font-size: 22px; font-weight: 700; color: #000; letter-spacing: 1.5px;">Vipin
+                            Krishna T.P</strong>
+                    </div>
+                    <div style="width: 100%; height: 1px; background: #eaeaea;"></div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: flex-start; gap: 30px; padding: 15px 0;">
+                        <span
+                            style="font-family: inherit; font-size: 14px; font-weight: 700; color: #666; letter-spacing: 2px;">02</span>
+                        <strong
+                            style="font-family: inherit; font-size: 22px; font-weight: 700; color: #000; letter-spacing: 1.5px;">Muhammed
+                            Sinan P.S</strong>
+                    </div>
+                    <div style="width: 100%; height: 1px; background: #eaeaea;"></div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: flex-start; gap: 30px; padding: 15px 0;">
+                        <span
+                            style="font-family: inherit; font-size: 14px; font-weight: 700; color: #666; letter-spacing: 2px;">03</span>
+                        <strong
+                            style="font-family: inherit; font-size: 22px; font-weight: 700; color: #000; letter-spacing: 1.5px;">Devadath
+                            C.M</strong>
+                    </div>
+                    <div style="width: 100%; height: 1px; background: #eaeaea;"></div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: flex-start; gap: 30px; padding: 15px 0;">
+                        <span
+                            style="font-family: inherit; font-size: 14px; font-weight: 700; color: #666; letter-spacing: 2px;">04</span>
+                        <strong
+                            style="font-family: inherit; font-size: 22px; font-weight: 700; color: #000; letter-spacing: 1.5px;">Hana</strong>
+                    </div>
+                    <div style="width: 100%; height: 1px; background: #eaeaea;"></div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: flex-start; gap: 30px; padding: 15px 0;">
+                        <span
+                            style="font-family: inherit; font-size: 14px; font-weight: 700; color: #666; letter-spacing: 2px;">05</span>
+                        <strong
+                            style="font-family: inherit; font-size: 22px; font-weight: 700; color: #000; letter-spacing: 1.5px;">Aparna
+                            T.M</strong>
+                    </div>
+                    <div style="width: 100%; height: 1px; background: #eaeaea;"></div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: flex-start; gap: 30px; padding: 15px 0;">
+                        <span
+                            style="font-family: inherit; font-size: 14px; font-weight: 700; color: #666; letter-spacing: 2px;">06</span>
+                        <strong
+                            style="font-family: inherit; font-size: 22px; font-weight: 700; color: #000; letter-spacing: 1.5px;">Kiran</strong>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">V</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         6. ABSTRACT
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-title">Abstract</div>
+            </div>
+
+            <p>The global demand for sustainable and renewable energy sources has necessitated the exploration of
+                unconventional power generation methods. This project demonstrates the practical application of
+                solid-state thermoelectric technology to harvest low-grade waste heat and convert it directly into
+                highly usable electrical energy.</p>
+
+            <p>Utilizing the principles of the Seebeck effect, a simple yet powerful Thermoelectric Generator (TEG)
+                was
+                constructed using a normal Bismuth Telluride (Bi&sub2;Te&sub3;) Peltier module. A rigid thermal
+                gradient
+                is established by applying an open candle flame to the hot junction, while a 12V DC cooling fan and
+                aluminum heat sink actively extract heat from the cold junction to prevent system equilibrium.</p>
+
+            <p>Because the direct voltage generated by the thermal gradient fluctuates wildly, intelligent
+                electronic
+                regulation is required. The raw output is fed directly into an XL6009 buck-boost converter. This
+                converter amplifies and stabilizes the voltage, allowing it to easily power the 12V cooling fan,
+                creating an active cooling loop. Simultaneously, the power is routed into a 5V step-up powerbank
+                module, providing a perfectly clean, safe USB output.</p>
+
+            <p>The experimental setup successfully proved its capability to convert literal fire into a slow but
+                usable
+                charging
+                current for a modern smartphone. This system practically verifies thermodynamic physics and serves
+                as an
+                incredibly robust, solid-state solution for emergency off-grid power generation.</p>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">VI</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         7. LIST OF FIGURES
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-title">List of Figures</div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <div class="toc-row"><span class="toc-title">Figure 1 &nbsp;&mdash;&nbsp; Block Diagram of the TEG
+                        Setup</span><span class="toc-page">03</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 2 &nbsp;&mdash;&nbsp; Circuit
+                        Diagram</span><span class="toc-page">04</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 3 &nbsp;&mdash;&nbsp; Peltier Module
+                        (TEC1-12715)</span><span class="toc-page">05</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 4 &nbsp;&mdash;&nbsp; XL6009 Buck-Boost
+                        Converter</span><span class="toc-page">05</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 5 &nbsp;&mdash;&nbsp; USB Powerbank Module
+                        (5V)</span><span class="toc-page">05</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 6 &nbsp;&mdash;&nbsp; 12V DC Cooling
+                        Fan</span><span class="toc-page">05</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 7 &nbsp;&mdash;&nbsp; Complete Experimental
+                        Setup</span><span class="toc-page">06</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 8 &nbsp;&mdash;&nbsp; Cooling Fan Rotating using
+                        Flame
+                        Heat</span><span class="toc-page">08</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 9 &nbsp;&mdash;&nbsp; Mobile Phone Output
+                        Charging
+                        Indication</span><span class="toc-page">08</span></div>
+                <div class="toc-row"><span class="toc-title">Figure 10 &nbsp;&mdash;&nbsp; Project Team
+                        collaboratively
+                        evaluating the live setup</span><span class="toc-page">09</span></div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">VII</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         8. TABLE OF CONTENTS
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-title">Table of Contents</div>
+            </div>
+
+            <div style="margin-bottom: 10px; border-bottom: 1.5px solid #000; padding-bottom: 5px;"><strong
+                    style="font-family: inherit; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">Front
+                    Matter</strong></div>
+            <div class="toc-row"><span class="toc-title">1. Cover Page</span><span class="toc-page">I</span></div>
+            <div class="toc-row"><span class="toc-title">2. Certificate</span><span class="toc-page">II</span></div>
+            <div class="toc-row"><span class="toc-title">3. Declaration</span><span class="toc-page">III</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">4. Acknowledgement</span><span class="toc-page">IV</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">5. Group Members</span><span class="toc-page">V</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">6. Abstract</span><span class="toc-page">VI</span></div>
+            <div class="toc-row"><span class="toc-title">7. List of Figures</span><span class="toc-page">VII</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">8. Table of Contents</span><span class="toc-page">VIII</span>
+            </div>
+
+            <div style="margin-top: 15px; margin-bottom: 10px; border-bottom: 1.5px solid #000; padding-bottom: 5px;">
+                <strong
+                    style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">Main
+                    Content</strong>
+            </div>
+            <div class="toc-row"><span class="toc-title">9. Introduction</span><span class="toc-page">01</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">10. Theory</span><span class="toc-page">02</span></div>
+            <div class="toc-row"><span class="toc-title">11. Materials and Methodology</span><span
+                    class="toc-page">03</span></div>
+            <div class="toc-row"><span class="toc-title">12. Circuit Diagram</span><span class="toc-page">04</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">13. Experimental Setup / Apparatus</span><span
+                    class="toc-page">05</span></div>
+            <div class="toc-row"><span class="toc-title">14. Working Procedure</span><span class="toc-page">06</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">15. Observations</span><span class="toc-page">07</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">16. Observation Photographs</span><span
+                    class="toc-page">08</span></div>
+            <div class="toc-row"><span class="toc-title">17. Project Team Photo</span><span class="toc-page">09</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">18. Conclusion</span><span class="toc-page">10</span></div>
+            <div class="toc-row"><span class="toc-title">19. Lessons Learned</span><span class="toc-page">11</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">20. Future Scope</span><span class="toc-page">12</span>
+            </div>
+            <div class="toc-row"><span class="toc-title">21. References</span><span class="toc-page">14</span></div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">VIII</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Project Team page moved to Main Content -->
+
+    <!-- MAIN CONTENT STARTS HERE -->
+
+    <!-- ==============================================
+         8. INTRODUCTION (Now Page 1)
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 1</div>
+                <div class="chapter-title">Introduction</div>
+            </div>
+
+            <p>The vast majority of energy generation systems today, from internal combustion engines to massive
+                industrial manufacturing plants, lose a significant percentage of their total potential energy as
+                waste
+                heat dissipated into the atmosphere. This project demonstrates a highly practical method to generate
+                electricity directly from this squandered thermal energy.</p>
+
+            <h3>What is a Thermoelectric Generator?</h3>
+            <p>A Thermoelectric Generator (TEG) is a solid-state device that converts heat flux (temperature
+                differences) directly into electrical energy. Instead of relying on large-scale mechanical turbines
+                or
+                moving parts, we utilize a compact semiconductor module and a low-grade thermal energy source—a
+                simple
+                flame—to induce an electric current.</p>
+
+            <div style="display: flex; gap: 15px; margin: 15px 0;">
+                <div class="image-box" style="flex: 1; margin: 0; width: 100%;">
+                    <span class="image-box-corner-tr"></span>
+                    <span class="image-box-corner-bl"></span>
+                    <img src="svg/project-setup.jpg" alt="Final Project Setup"
+                        style="width: 100%; height: 220px; object-fit: cover; display: block;">
+                </div>
+                <div class="image-box" style="flex: 1; margin: 0; width: 100%;">
+                    <span class="image-box-corner-tr"></span>
+                    <span class="image-box-corner-bl"></span>
+                    <img src="svg/project view 2.jpg" alt="Project Overview View 2"
+                        style="width: 100%; height: 220px; object-fit: cover; display: block;">
+                </div>
+            </div>
+            <div class="caption">Figure 1.1: primary project assembly and perspective overviews.</div>
+
+            <h3>Purpose and Application</h3>
+            <p>The core purpose of this project is to physically construct a portable, reliable system capable of
+                capturing waste heat to charge a modern communication device (smartphone) via a USB interface.
+                Applications include off-grid survival charging, industrial heat recovery, and remote power
+                generation
+                where moving parts are prone to mechanical failure.</p>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">01</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         9. THEORY
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 2</div>
+                <div class="chapter-title">Theory</div>
+            </div>
+
+            <h3>The Seebeck Effect</h3>
+            <p>In 1821, the German physicist <strong>Thomas Johann Seebeck</strong> discovered that a circuit made
+                from
+                two dissimilar conductive materials, with junctions maintained at different temperatures, generated
+                an
+                invisible force that deflected a compass needle. He had fundamentally proven that a thermal gradient
+                directly induces an electrical current.</p>
+
+            <div class="image-box">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/seebeck-effect.png" alt="Seebeck Effect Mechanism"
+                    style="width: 100%; height: auto; max-height: 320px; object-fit: contain;">
+            </div>
+            <div class="caption">Figure 2.1: carrier migration mechanism driving the Seebeck effect.</div>
+
+            <h3>Physics Principle & Working</h3>
+            <p>Modern Thermoelectric Generators harness this effect using highly doped semiconductor materials
+                arranged
+                in pairs:</p>
+            <ul>
+                <li><strong>N-Type (Negative):</strong> Contains an abundance of electrons. When the bottom is
+                    heated,
+                    these electrons gain kinetic energy and rapidly diffuse towards the colder top side.</li>
+                <li><strong>P-Type (Positive):</strong> Contains an abundance of electron "holes". When heated,
+                    these
+                    positive holes also migrate towards the colder side.</li>
+            </ul>
+            <p>This physical separation of charges creates a strict electrical potential difference (Voltage). The
+                magnitude of the generated voltage is directly proportional to the temperature difference (&Delta;T)
+                between the two junctions.</p>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">02</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         10. MATERIALS AND METHODOLOGY
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 3</div>
+                <div class="chapter-title">Materials & Methodology</div>
+            </div>
+
+            <p style="margin-bottom: 8px;">To construct a highly efficient and functional thermoelectric charging
+                rig, specific solid-state
+                components, thermal dissipators, and structural materials were rigorously selected.</p>
+
+            <h3 style="margin-bottom: 5px; margin-top: 5px;">Core Electrical Components</h3>
+            <ul style="margin-bottom: 8px;">
+                <li style="margin-bottom: 4px;"><strong>Normal Peltier Module (TEC1-12715):</strong> The primary
+                    semiconductor array constructed of
+                    Bismuth Telluride (Bi&sub2;Te&sub3;), responsible for directly converting heat flux into a raw
+                    DC
+                    voltage.</li>
+                <li style="margin-bottom: 4px;"><strong>XL6009 Buck-Boost Converter:</strong> A high-performance
+                    DC-to-DC regulator module. It
+                    intercepts the volatile output from the Peltier and amplifies it to a higher voltage capable of
+                    driving the cooling fan.</li>
+                <li style="margin-bottom: 4px;"><strong>5V Step-Up Powerbank Module:</strong> A dedicated USB output
+                    module that steps up and
+                    strictly clamps the power to 5.0V, ensuring safe charging protocols for modern smartphones.</li>
+                <li style="margin-bottom: 4px;"><strong>12V DC Cooling Fan:</strong> An active aerodynamic extractor
+                    that forcibly pulls ambient air
+                    through the heat sink to prevent total system thermal equilibrium.</li>
+            </ul>
+
+            <h3 style="margin-bottom: 5px; margin-top: 5px;">Thermal & Structural Materials</h3>
+            <ul style="margin-bottom: 8px;">
+                <li style="margin-bottom: 4px;"><strong>Aluminum Heat Sink & Thermal Paste:</strong> A heavily
+                    finned
+                    metallic block to maximize
+                    surface area. Thermal paste eliminates microscopic air gaps between the ceramic module and the
+                    metal.</li>
+                <li style="margin-bottom: 4px;"><strong>Tile Sheet & PVC Pipe:</strong> Used to construct a rigid,
+                    heat-resistant foundational base
+                    and vertical standing structure, isolating the open candle flame from the delicate circuitry.
+                </li>
+                <li style="margin-bottom: 4px;"><strong>Glue & Ribbon Wires:</strong> Industrial adhesive for
+                    structural
+                    rigidity and
+                    high-conductivity multi-strand ribbon wires to minimize electrical resistance between modules.
+                </li>
+            </ul>
+
+            <!-- Beautifully Arranged 2x2 Image Grid -->
+            <div class="component-grid">
+
+                <div class="component-item">
+                    <img src="svg/photo_2026-02-26_15-44-30.jpg" alt="Peltier Module">
+                    <div class="component-label">Peltier Module</div>
+                </div>
+
+                <div class="component-item">
+                    <img src="svg/buck booster.jpg" alt="XL6009 Booster">
+                    <div class="component-label">XL6009 Booster</div>
+                </div>
+
+                <div class="component-item">
+                    <img src="svg/usbmodule.jpg" alt="5V USB Module" style="transform: scale(1.35);">
+                    <div class="component-label">5V USB Module</div>
+                </div>
+
+                <div class="component-item">
+                    <img src="svg/fan.jpg" alt="12V Cooling Fan">
+                    <div class="component-label">12V Cooling Fan</div>
+                </div>
+
+            </div>
+            <div class="caption">Figure 3.1: individual hardware components utilized in the assembly.</div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">03</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         11. CIRCUIT DIAGRAM
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 4</div>
+                <div class="chapter-title">Circuit Diagram</div>
+            </div>
+
+            <p>The following schematic illustrates the intricate electrical routing from the raw thermal generator
+                through the dual-module stabilization hardware.</p>
+
+            <div class="image-box" style="padding: 10px;">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/circuit-diagram.svg" alt="Project Circuit Diagram" style="max-height: 400px;">
+            </div>
+            <div class="caption">Figure 4.1: schematic demonstrating parallel distribution to cooling and charging
+                modules.</div>
+
+            <p>The raw, unpredictable voltage generated by the Peltier module immediately splits into a parallel
+                circuit. The upper branch feeds into the <strong>XL6009 Buck-Booster</strong>, which amplifies the
+                low
+                input to a stable 12V to forcefully spin the cooling fan. Simultaneously, the lower branch feeds
+                into
+                the <strong>5V Step-Up Powerbank Module</strong>, locking the voltage to a clean, flat 5.0V curve
+                required by the smartphone's USB controller.</p>
+
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">04</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         12. EXPERIMENTAL SETUP / APPARATUS
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 5</div>
+                <div class="chapter-title">Experimental Setup</div>
+            </div>
+
+            <p>The physical construction of the rig utilized highly resilient structural components to safely manage
+                open flame thermodynamics while securing the delicate solid-state electronics.</p>
+
+            <div class="image-box">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/experimental-setup-photo.jpg" alt="Active Thermal Extraction Setup"
+                    style="width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block;">
+            </div>
+            <div class="caption">Figure 5.1: active thermal extraction using heat sink and structural PVC stands.
+            </div>
+
+            <h3>Hardware Assembly</h3>
+            <p>We engineered an organized, heat-resistant chassis. A <strong>Tile sheet</strong> acts as the primary
+                foundation, providing excellent fire resistance and stability. Heavy-duty <strong>PVC pipes</strong>
+                were cut and glued to act as structural standoffs, safely elevating the heat-receiving plate above
+                the
+                candle.</p>
+            <p>The Peltier module is sandwiched tightly between this hot plate and the upper cooling assembly.
+                Premium
+                <strong>thermal paste</strong> was generously applied to both ceramic faces of the module to
+                eliminate
+                microscopic air gaps, maximizing thermal conductivity. The XL6009 and 5V USB modules were secured to
+                the
+                cooler outer edges of the tile base using industrial glue, connected via high-conductivity ribbon
+                wires.
+            </p>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">05</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         13. WORKING PROCEDURE
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 6</div>
+                <div class="chapter-title">Working Procedure</div>
+            </div>
+
+            <div class="image-box">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/operational-flow.png" alt="Operational Flow Diagram"
+                    style="width: 100%; height: auto; max-height: 280px; object-fit: contain;">
+            </div>
+            <div class="caption">Figure 6.1: sequential operational flow from thermal input to electronic
+                stabilization.
+            </div>
+
+            <h3>Step-by-Step Operation</h3>
+            <ul>
+                <li><strong>Step 1: Thermal Application.</strong> A paraffin tea-light candle is ignited beneath the
+                    elevated heat plate. The flame transfers intense kinetic energy directly to the bottom ceramic
+                    face
+                    of the Peltier module.</li>
+                <li><strong>Step 2: Voltage Generation.</strong> As the bottom face rapidly heats, the internal
+                    charge
+                    carriers (electrons and holes) migrate towards the colder top face. This physical separation,
+                    dictated by the Seebeck effect, creates a raw, fluctuating DC voltage (between 2V and 5V) across
+                    the
+                    ribbon wires.</li>
+                <li><strong>Step 3: Initial Bootstrapping.</strong> Initially, this low voltage creeps into the
+                    XL6009
+                    buck-booster. Once the raw voltage crosses the ~3.0V threshold, the XL6009 efficiently boosts
+                    this
+                    power to 12V, kickstarting the cooling fan.</li>
+                <li><strong>Step 4: Active Heat Extraction.</strong> The now-spinning 12V DC fan aggressively draws
+                    ambient air through the aluminum heat sink, locking the top plate's temperature and cementing a
+                    massive thermal gradient (&Delta;T).</li>
+                <li><strong>Step 5: Stabilization & Output.</strong> Simultaneously, the generated power flows into
+                    the
+                    5V Step-up powerbank module. It strictly clamps the erratic input to a precise 5.0V, routing
+                    perfectly safe, clean power to the USB port to initiate mobile charging.</li>
+            </ul>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">06</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         14. OBSERVATION TABLE
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">CHAPTER 7</div>
+                <div class="chapter-title">OBSERVATION</div>
+            </div>
+
+            <p style="margin-bottom: 20px;">When the candle was lit and placed below the metal plate, heat was
+                applied
+                to the Peltier module. During the first few minutes, no output was observed because the module was
+                heating up.</p>
+
+            <p style="margin-bottom: 20px;">After about 3 to 5 minutes, a small voltage was generated, and the
+                cooling
+                fan started rotating slowly. As the heating continued, the speed of the fan increased gradually.
+                This
+                showed that electrical energy was being produced from heat.</p>
+
+            <p style="margin-bottom: 20px;">After about 5 to 8 minutes, the voltage became sufficient
+                to power the USB module. When a mobile phone was connected using a USB cable, the charging
+                indication
+                appeared on the mobile screen. The charging process was slow, but it confirmed that electricity was
+                generated successfully.</p>
+
+            <p style="margin-bottom: 20px;">It was also observed that when the candle flame was
+                steady, the fan rotated smoothly and charging was stable. When the flame flickered due to air
+                movement,
+                the fan speed and charging fluctuated slightly.</p>
+
+            <p>However, the overall output power was low, resulting in slow mobile charging.</p>
+
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">07</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         15. OBSERVATION PHOTOGRAPHS
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <h3
+                style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 10px; font-size: 20px; letter-spacing: 4px; display: inline-block; position: relative; left: 50%; transform: translateX(-50%);">
+                OBSERVATION
+                PHOTOGRAPHS</h3>
+
+            <div class="image-box"
+                style="margin-top: 10px; margin-bottom: 15px; border: 2px solid #000; padding: 4px; border-radius: 4px;">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/candle-08.png" alt="Cooling Fan Rotating"
+                    style="width: 100%; height: auto; max-height: 380px; object-fit: contain; display: block;">
+            </div>
+            <p class="caption">Figure 8: cooling fan rotating using heat from candle flame.</p>
+
+            <div class="image-box"
+                style="margin-top: 35px; margin-bottom: 15px; border: 2px solid #000; padding: 4px; border-radius: 4px;">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/candle_4k.png" alt="Mobile Charging"
+                    style="width: 100%; height: auto; max-height: 380px; object-fit: contain; display: block;">
+            </div>
+            <p class="caption">Figure 9: mobile phone showing charging indication.</p>
+
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">08</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         17. PROJECT TEAM PHOTO
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-title">Project Team Photo</div>
+            </div>
+
+            <p style="text-align: center; margin-bottom: 25px;">The dedicated project team behind the development,
+                physical construction, and documentation of the Thermoelectric Generator project.</p>
+
+            <div class="image-box" style="width: 100%; padding: 5px; border: 2px solid #000;">
+                <span class="image-box-corner-tr"></span>
+                <span class="image-box-corner-bl"></span>
+                <img src="svg/student-photo.jpg" alt="Student Project Team"
+                    style="width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block;">
+            </div>
+            <div class="caption" style="margin-top: 15px;">Figure 10: the project team collaboratively evaluating
+                the
+                live operational setup.</div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">09</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         18. CONCLUSION (PART 1)
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 8</div>
+                <div class="chapter-title">Conclusion</div>
+            </div>
+
+            <h3>Summary of Findings & Key Results</h3>
+            <p>The Thermoelectric Generator project stands as a resounding success as a highly functional
+                proof-of-concept. The system successfully proved that low-grade thermal sources—such as a simple
+                paraffin flame—can be actively harvested and converted into functional electrical power using
+                standard
+                solid-state semiconductor technology. We empirically verified that applying a strict temperature
+                gradient across a Peltier module forces charge carrier migration, resulting in a measurable and
+                exploitable electrical potential. Ultimately, the experimental results fundamentally agree with the
+                theoretical principles of the Seebeck effect, solidly validating the direct thermal-to-electrical
+                energy
+                conversion.</p>
+
+            <h3>Achievement of Objectives</h3>
+            <ul>
+                <li><strong>Objective 1: Harnessing Waste Heat.</strong> <em>Achieved.</em> The modular system
+                    captured
+                    thermal kinetic energy from an open flame that would have otherwise dissipated uselessly into
+                    the
+                    environment.</li>
+                <li><strong>Objective 2: Electrical Conversion.</strong> <em>Achieved.</em> The thermal gradient was
+                    successfully converted into a continuous DC current via the Seebeck effect.</li>
+                <li><strong>Objective 3: Voltage Stabilization.</strong> <em>Achieved.</em> The hardware integration
+                    of
+                    the XL6009 and 5V Powerbank modules successfully locked the volatile output to a clean 5.0V,
+                    perfectly protecting sensitive downstream electronics.</li>
+                <li><strong>Objective 4: Provide Sustainable Power.</strong> <em>Partially Achieved.</em> While it
+                    works
+                    reliably to charge a phone, the extremely low inherent efficiency of Bismuth Telluride means it
+                    serves best as an emergency survival asset rather than a rapid primary power grid replacement.
+                </li>
+            </ul>
+
+            <h3>Overall Evaluation</h3>
+            <p>The hardware architecture designed in this project—utilizing a tile sheet foundation, PVC stands, and
+                dual-boost circuitry—is mathematically sound, remarkably safe, and highly reproducible. The rigorous
+                addition of the active 12V cooling loop was the critical factor in preventing total system thermal
+                saturation, proving that generating heat is only half the equation; effectively dissipating it is
+                the
+                true bottleneck.</p>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">10</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         17. CONCLUSION (PART 2: Lessons Learned)
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <h3
+                style="margin-top: 10px; text-align: center; font-size: 18px; border-bottom: 2px solid #000; padding-bottom: 10px; letter-spacing: 2px; text-transform: uppercase;">
+                Lessons Learned</h3>
+
+            <p>Throughout the rigorous testing, assembly, and evaluation phases of this project, several profound
+                engineering and thermodynamic lessons were established. These five critical points outline the
+                boundaries of solid-state thermal harvesting:</p>
+
+            <ol style="margin-top: 20px; margin-bottom: 20px;">
+                <li style="margin-bottom: 18px;">
+                    <strong>Active Cooling is an Absolute Mandate:</strong> Passive heat sinks are entirely
+                    insufficient
+                    for continuous power generation. Without the 12V aerodynamic cooling fan, the cold side of the
+                    Peltier reaches thermal equilibrium with the hot side within minutes, dropping the &Delta;T to
+                    zero
+                    and entirely halting electricity production.
+                </li>
+                <li style="margin-bottom: 18px;">
+                    <strong>Thermal Paste Dictates Efficiency:</strong> Microscopic air gaps between the rough
+                    ceramic
+                    faces of the Peltier module and the aluminum heat sink act as massive thermal insulators.
+                    Copious
+                    application of high-grade thermal compound is critical to reduce thermal resistance.
+                </li>
+                <li style="margin-bottom: 18px;">
+                    <strong>Heat Source Instability Requires Robust Regulation:</strong> An open flame flickers
+                    aggressively due to ambient drafts. This chemical physics dictates that the electronic circuitry
+                    (XL6009 / 5V Step-up) must be incredibly robust to absorb extreme voltage spikes and sudden
+                    drops
+                    without resetting the smartphone's charging handshake protocol.
+                </li>
+                <li style="margin-bottom: 18px;">
+                    <strong>Structural Integrity Ensures Safety:</strong> Working with open flames and sensitive
+                    circuitry requires extreme structural care. The substitution of wood/cardboard for
+                    heat-resistant
+                    tile sheets and rigid PVC pipe standoffs proved essential in preventing catastrophic melting or
+                    fire
+                    hazards.
+                </li>
+                <li style="margin-bottom: 18px;">
+                    <strong>Parasitic Load Penalties:</strong> The electrical energy required to run the active
+                    cooling
+                    fan acts as a heavy "parasitic load" on the total system. In larger-scale systems, this
+                    power draw must be mathematically subtracted to calculate the true net energy yield.
+                </li>
+            </ol>
+
+            <div class="transition-box">
+                Armed with these rigorous lessons, how can this exact technological principle be scaled up to solve
+                modern, real-world energy crises across the globe?
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">11</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         18. FUTURE SCOPE (Page 1)
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 9</div>
+                <div class="chapter-title">Future Scope & Applications</div>
+            </div>
+
+            <h3>Ideal Real-World Implementation</h3>
+            <p>While this project demonstrates the concept on a miniature desktop scale, the core technology
+                possesses
+                massive, disruptive potential. By wiring multiple Peltier modules in complex series-parallel arrays
+                to
+                exponentially stack the output amperage, the following 5 real-world implementations become
+                immediately
+                viable:</p>
+            <ul>
+                <li style="margin-bottom: 30px;"><strong>1. Automotive Exhaust Harvesting:</strong> Wrapping the
+                    extremely hot exhaust pipes of commercial vehicles with curved TEG arrays to generate
+                    electricity
+                    for internal electronics, drastically reducing the mechanical drag of the engine's alternator
+                    and
+                    directly improving fuel efficiency.</li>
+                <li style="margin-bottom: 30px;"><strong>2. Industrial Furnace Recovery:</strong> Capturing the
+                    massive
+                    thermal waste generated by steel smelting, foundries, or glass manufacturing plants.
+                    High-temperature arrays could convert this lost heat back into supplementary grid power for the
+                    factory.</li>
+                <li style="margin-bottom: 30px;"><strong>3. Remote Biomass Survival Stoves:</strong> Integrating
+                    heat-proof modules directly into off-grid, wood-fired camping stoves to provide LED lighting and
+                    communication power simultaneously while cooking food in remote terrain.</li>
+                <li style="margin-bottom: 30px;"><strong>4. Deep Geothermal Generation:</strong> Exploiting the
+                    extreme
+                    temperature differentials between hot underground thermal springs and freezing ambient surface
+                    air
+                    in arctic regions to power remote scientific research stations indefinitely without diesel fuel.
+                </li>
+                <li style="margin-bottom: 30px;"><strong>5. Wearable Health Monitors:</strong> Utilizing human body
+                    heat
+                    against the cooler ambient air temperature to indefinitely power low-energy medical sensors,
+                    such as
+                    pacemakers or continuous glucose monitors, entirely eliminating battery replacements.</li>
+            </ul>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">12</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         18b. FUTURE SCOPE (Page 2: Improvements & Collaborations)
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <h3
+                style="margin-top: 10px; text-align: center; font-size: 18px; border-bottom: 2px solid #000; padding-bottom: 10px; letter-spacing: 2px; text-transform: uppercase;">
+                System Improvements</h3>
+
+            <p>The baseline performance and total power yield of this prototype system can be significantly enhanced
+                by connecting multiple Peltier modules in <strong>series</strong> to drastically increase the output
+                voltage, and in <strong>parallel</strong> to multiply the total output current. Furthermore,
+                utilizing
+                a larger mass heat sink, applying professional-grade thermal paste to eliminate insulative air gaps,
+                and harnessing a more robust, sustained heat source will exponentially improve both the overall
+                thermodynamic efficiency and the electrical stability of the output power.</p>
+
+            <p style="margin-top: 20px;">It is also noteworthy that the output voltage of the thermoelectric
+                generator
+                increases proportionally with the temperature difference (ΔT) maintained across the module
+                faces, as well as with the total number of modules connected in series. Therefore, maximizing both
+                parameters simultaneously is the most effective strategy for scaling the total electrical yield of
+                the
+                system to commercially viable levels.</p>
+
+            <h3 style="margin-top: 30px;">Potential Collaborations</h3>
+            <p>To realize these advanced applications, strategic partnerships are highly recommended. Collaborating
+                with
+                <strong>Automobile Manufacturers</strong> to test exhaust recovery arrays in wind tunnels,
+                partnering
+                with <strong>University Material Science Departments</strong> to test next-generation Skutterudite
+                semiconductor alloys, and aligning with <strong>Outdoor Survival Gear Companies</strong> could
+                rapidly
+                bring a ruggedized version of this exact project to the commercial consumer market.
+            </p>
+
+            <div class="transition-box" style="margin-top: 30px;">
+                With these system improvements, strategic collaborations, and scalable configurations, the
+                thermoelectric generator technology demonstrated in this project holds significant promise for
+                addressing real-world energy harvesting challenges across multiple industries.
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">13</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         19. REFERENCES
+         ============================================== -->
+    <div class="page">
+        <svg class="page-border" viewBox="0 0 794 1123">
+            <use href="#editorial-bw-frame" />
+        </svg>
+        <div class="content">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 10</div>
+                <div class="chapter-title">References</div>
+            </div>
+
+            <p style="margin-bottom: 20px;">The following academic materials, component datasheets, standard physics
+                texts, and web resources were rigorously consulted during the research, design, and physical
+                assembly
+                phases of this project:</p>
+
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 12px;">
+                    <strong>[1] Technical Demonstration:</strong><br>
+                    Creative Science. (2023). <em>Thermoelectric Generator: Electricity from Candle Flame</em>.
+                    YouTube Video: <a href="https://youtu.be/iTRJa0Z3BXE" target="_blank"
+                        style="color: #000; text-decoration: underline;">https://youtu.be/iTRJa0Z3BXE</a>.
+                    Referenced for circuit architecture and heat management strategies.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>[2] Core Physics Textbooks:</strong><br>
+                    Goldsmid, H. J. (2010). <em>Introduction to Thermoelectricity</em>. Springer Series in Materials
+                    Science. Springer-Verlag Berlin Heidelberg.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>[3] Academic Thermodynamics Journals:</strong><br>
+                    DiSalvo, F. J. (1999). <em>Thermoelectric Cooling and Power Generation</em>. Science Magazine,
+                    285(5428), 703-706.<br>
+                    Bell, L. E. (2008). <em>Cooling, Heating, Generating Power, and Recovering Waste Heat with
+                        Thermoelectric Systems</em>. Science, 321(5895), 1457-1461.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>[4] Electrical Component Datasheets:</strong><br>
+                    Hebei I.T. (Shanghai) Co., Ltd. (2018). <em>TEC1-12715 Thermoelectric Cooler Datasheet</em>.
+                    Used
+                    for identifying component operational voltage thresholds and physical thermal tolerances.<br>
+                    Texas Instruments. (2021). <em>Understanding Buck-Boost Power Stages in Switch Mode Power
+                        Supplies</em>. Application Report SLVA059A.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>[5] Historical Records:</strong><br>
+                    Seebeck, T. J. (1822). <em>Magnetic Polarization of Metals and Minerals by Temperature
+                        Differences</em>. Abhandlungen der Preussischen Akademie der Wissenschaften.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>[6] Web Resources & Encyclopedias:</strong><br>
+                    Wikipedia Contributors. "Thermoelectric Generator." <em>Wikipedia, The Free Encyclopedia.</em>
+                    Accessed during the initial conceptualization phase for broad architectural overviews.<br>
+                    Google Scholar. Standard search queries utilized for historical context regarding solid-state
+                    physics developments.
+                </li>
+            </ul>
+
+            <div
+                style="text-align: center; margin-top: 40px; font-family: 'Cinzel', serif; font-weight: 800; font-size: 14px; letter-spacing: 6px; color: #000;">
+                *** END OF REPORT ***
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="page-number-wrapper">
+                <div class="page-number-line"></div>
+                <div class="page-number-ornament"></div>
+                <span class="page-number-text">14</span>
+                <div class="page-number-ornament"></div>
+                <div class="page-number-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Text Scaling Script - Prevents Overflow in all Pages -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const contentContainers = document.querySelectorAll('.content');
+
+            contentContainers.forEach((container) => {
+                const isOverflowing = () => container.scrollHeight > container.clientHeight;
+
+                if (isOverflowing()) {
+                    let scale = 1.0;
+                    const elementsToScale = container.querySelectorAll('p, h3, li, ul, ol, .chapter-title, .chapter-number, .transition-box, .caption, th, td, .formula-box, .toc-row, .cert-text, img, .chapter-header, .image-box');
+
+                    const originalStyles = [];
+                    elementsToScale.forEach(el => {
+                        const style = window.getComputedStyle(el);
+                        originalStyles.push({
+                            element: el,
+                            isImage: el.tagName.toLowerCase() === 'img' || el.classList.contains('image-box'),
+                            fontSize: parseFloat(style.fontSize),
+                            lineHeight: parseFloat(style.lineHeight) || (parseFloat(style.fontSize) * 1.6),
+                            marginBottom: parseFloat(style.marginBottom),
+                            marginTop: parseFloat(style.marginTop),
+                            maxHeight: parseFloat(style.maxHeight) || 0
+                        });
+                    });
+
+                    // Algorithmically reduce size to fit safe zone
+                    while (isOverflowing() && scale > 0.60) {
+                        scale -= 0.01;
+
+                        originalStyles.forEach(item => {
+                            // Shrink images and margins faster (more aggressively) than text
+                            const dynamicImageScale = Math.max(0.70, scale - 0.15); // Images shrink up to 15% more than text
+                            const dynamicMarginScale = Math.max(0.50, scale - 0.20); // Margins shrink up to 20% more than text
+
+                            if (item.isImage) {
+                                if (item.maxHeight > 0) {
+                                    item.element.style.maxHeight = (item.maxHeight * dynamicImageScale) + 'px';
+                                }
+                            } else {
+                                // Text shrinks normally but at a slower perceived rate compared to margins
+                                if (!isNaN(item.fontSize) && item.fontSize > 0) {
+                                    item.element.style.fontSize = (item.fontSize * scale) + 'px';
+                                }
+                                if (!isNaN(item.lineHeight) && item.lineHeight > 0) {
+                                    item.element.style.lineHeight = (item.lineHeight * scale) + 'px';
+                                }
+
+                                // Compress margins more aggressively
+                                if (!isNaN(item.marginBottom) && item.marginBottom > 0) {
+                                    item.element.style.marginBottom = (item.marginBottom * dynamicMarginScale) + 'px';
+                                }
+                                if (!isNaN(item.marginTop) && item.marginTop > 0 && !item.element.classList.contains('transition-box')) {
+                                    item.element.style.marginTop = (item.marginTop * dynamicMarginScale) + 'px';
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
