@@ -1,98 +1,118 @@
 <div align="center">
 
-<img src="svg/premium-branding.png" width="400" alt="TEG Premium Branding" />
+<img src="svg/premium-branding.png" width="450" alt="TEG Premium Branding" />
 
 # 💎 Thermoelectric Generator: Electricity from Heat
 ### A Fusion of Applied Physics & High-End Web Engineering
+**B.Sc Physics | Calicut University | Mar Dionysius College, Pazhanji**
 
-[![Report Stability](https://img.shields.io/badge/Aesthetics-Liquid_Glass-00f2ff?style=for-the-badge&logo=glassdoor&logoColor=white)](index.html)
-[![Presentation Quality](https://img.shields.io/badge/Shaders-Gold_Shiny-gold?style=for-the-badge&logo=adobecreativetransform&logoColor=white)](presentation.html)
-[![University](https://img.shields.io/badge/University-Calicut-800000?style=for-the-badge)](https://uoc.ac.in/)
+[![Engine](https://img.shields.io/badge/Render_Engine-Puppeteer_v24.37- gold?style=for-the-badge&logo=googlechrome&logoColor=white)](export-pdf.js)
+[![Aesthetics](https://img.shields.io/badge/Aesthetics-Glassmorphism_&_Shaders-00f2ff?style=for-the-badge&logo=glassdoor&logoColor=white)](presentation.html)
+[![Physics](https://img.shields.io/badge/Physics-Seebeck_Effect-F7DF1E?style=for-the-badge&logo=physics&logoColor=black)](https://en.wikipedia.org/wiki/Seebeck_effect)
 
 <br>
 
-**"Engineering the energy transition through pixel-perfect thermal harvesting."**
+**"A pixel-perfect synthesis of thermal thermodynamics and modern web-to-print automation."**
 
 ---
 
 </div>
 
-## 🌊 Liquid Glass & Gold Shader Aesthetics
+## 🔬 Core Circuitry & Logic
 
-While the **Academic Report** focuses on clean, high-contrast typography for university submission, the **Digital Presentation Engine** implements a **Custom Shader-Inspired UI**:
+The system is built for reliable energy harvesting. Below is the primary circuit architecture and the operational flow of the TEG system.
 
-*   **Liquid Glass Shaders**: Real-time backdrop filtering (glassmorphism) in the presentation creates a translucent, fluid interface.
-*   **Gold Shiny Keyframes**: Specialized CSS3 animations that simulate metallic luster and "shiny" light sweeps across critical components.
-*   **Animated Mesh Gradients**: Deep-background shaders that drift across the presentation slides for a premium feel.
+<div align="center">
+  <img src="svg/circuit-diagram.svg" width="600" alt="Circuit Diagram" />
+  <p><i>Figure 1: High-Fidelity Circuit Architecture</i></p>
+  
+  <img src="svg/operational-flow.png" width="600" alt="Operational Flow" />
+  <p><i>Figure 2: Logic & Power Distribution Flowchart</i></p>
+</div>
 
 ---
 
-## 🛠️ Technical Architecture (The Web-Path)
+## ✨ Engineering the "Gold Shiny" & "Liquid Glass" UI
 
-Traditional tools like **PowerPoint** and **Word** were bypassed due to their lack of layout precision and manual time-sink. Instead, we built a custom **"Web-to-Print"** workflow:
+Unlike standard PowerPoint slides, this project implements a **Custom Shader Engine** using CSS3. 
 
-### System Architecture Flow
-```mermaid
-graph TD
-    A[<b>Applied Physics</b><br/>Seebeck Effect Theory] --> B[<b>HTML5 Structure</b><br/>Semantic A4 Layouts]
-    B --> C[<b>CSS3 Styling</b><br/>Glassmorphism & Shaders]
-    C --> D[<b>Puppeteer Engine</b><br/>Headless Chrome Control]
-    D --> E[<b>Final Output</b><br/>Pixel-Perfect PDF Book]
-    D --> F[<b>High-End Assets</b><br/>4K PNG Visualizations]
-    
-    style A fill:#D21B90,stroke:#333,stroke-width:2px,color:#fff
-    style B fill:#5C5CE6,stroke:#333,stroke-width:2px,color:#fff
-    style C fill:#00E5FF,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#FFD600,stroke:#333,stroke-width:4px,color:#000
-    style E fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
-    style F fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
+### 🪟 Liquid Glass (Glassmorphism)
+The presentation cards utilize a heavy **30px Backdrop Blur** combined with semi-transparent white borders and high-intensity shadows to create depth.
+```css
+.glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
+}
+```
+
+### 🪄 The "Gold Shiny" Light Sweep
+Visible on hover or slide activation, a **Metallic Shine** sweeps across the cards. This is achieved via a `::after` pseudo-element with a diagonal linear gradient, animated across the X-axis.
+```css
+.glass-card::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transition: 1.5s ease;
+}
 ```
 
 ---
 
-## 🔬 System Workflow
+## 🏗️ Technical Build & Directory Structure
 
-| Phase | Technical Layer | Result |
-| :--- | :--- | :--- |
-| **I. Core Theory** | Thermodynamics / Seebeck Effect | Mathematical modeling of Delta-T to EMF. |
-| **II. UI Design** | HTML5 / CSS3 / Glass Shaders | Premium visual interface with fluid layout. |
-| **III. Automation** | Node.js / Google Puppeteer | Programmatic conversion of web code to static documents. |
-| **IV. Precision** | Print-Media CSS Queries | Pixel-perfect A4 report book with zero formatting drift. |
-
----
-
-## 🏛️ Institutional Credits & Recognition
-
-This research is conducted under the esteemed standards of **Calicut University** and hosted by **Mar Dionysius (MD) College, Pazhanji**.
-
-*   **University**: [Calicut University](https://uoc.ac.in/) (Academic Validation)
-*   **College**: [Mar Dionysius College, Pazhanji](http://mdcollege.edu.in/) (Research Infrastructure)
-*   **Department**: Department of Physics (Technical Support)
-*   **Project Guide**: **Mrs. Rose Jose** *(Assistant Professor)*
-*   **Head of Dept**: **Asst. Prof. Smt. Sreeakala R**
-
-**Project Team:** Vipin Krishna T.P, Muhammed Sinan P.S, Devadath C.M, Hana, Aparna T.M, Kiran.
-
----
-
-## 🚀 Deployment & Generation
-
-To experience the premium animations or generate the final report:
+The project is structured as a **Single-Source Doc Engine**, allowing for the simultaneous generation of a 25-page academic report and a premium digital presentation from the same asset pool.
 
 ```bash
-# Clone the repository
-git clone https://github.com/kiran-embedded/thermoelectric-generator.git
-
-# Install the Automated Web Engine
-npm install
-
-# Generate the 25-page Pixel-Perfect Report
-node export-pdf.js
+.
+├── 📄 index.html                # Report Engine (Times New Roman / Cinzel / A4 CSS)
+├── 🎬 presentation.html          # Digital Suite (Glassmorphism / Orbitron / Animations)
+├── ⚡ export-pdf.js              # Automation Engine (Puppeteer v24 / Headless Chrome)
+├── 🖼️ export-4k.js               # Visual Engine (High-Resolution PNG Exports)
+├── 📁 svg/                      # Asset Core (SVGs, Schematics, High-Res Photos)
+│   ├── circuit-diagram.svg      # Primary Schematic
+│   └── premium-branding.png     # Digital Asset
+└── 📦 package.json              # System Dependencies
 ```
+
+---
+
+## �️ How to Build / Generate the Book
+
+The report generation is completely automated using **Headless Chrome**.
+
+1.  **Initialize**: Install the Puppeeter engine.
+    ```bash
+    npm install
+    ```
+2.  **Generate Report**: Run the PDF export script.
+    ```bash
+    node export-pdf.js
+    ```
+3.  **Visual Assets**: Generate 4K PNG visualizations.
+    ```bash
+    node export-4k.js
+    ```
+
+---
+
+## 🏛️ credits & Affiliations
+
+Developed under the academic guidelines of **Calicut University** at **Mar Dionysius (MD) College, Pazhanji**.
+
+*   **Principal Investigator**: **Mrs. Rose Jose** (Assistant Professor)
+*   **Head of Department**: **Asst. Prof. Smt. Sreeakala R**
+*   **The Team**: Vipin Krishna, Muhammed Sinan, Devadath, Hana, Aparna, Kiran.
+
+---
 
 <div align="center">
 
 *Academic Year 2025–2026*  
-**Physics. Engineering. Aesthetics.**
+**Built with Precision. Presented with Excellence.**
 
 </div>
