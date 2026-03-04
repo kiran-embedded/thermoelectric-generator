@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="svg/animated-heading.svg" width="1000" alt="Thermoelectric Generator" />
+<img src="svg/animated-heading.svg" width="100%" style="max-width: 1200px;" alt="Thermoelectric Generator" />
 
 
 ### B.Sc Physics Project | University of Calicut
