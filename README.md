@@ -83,17 +83,7 @@ To generate the final report locally, ensure you have **Node.js** installed:
 1.  **Install Dependencies**: `npm install`
 2.  **Generate Report**: `node export-pdf.js`
 
----
 
-## 🏛️ Credits & Institutional Branding
-
-This project was developed at **Mar Dionysius (MD) College, Pazhanji** in accordance with the standards of **Calicut University**.
-
-*   **Head of Department**: **Asst. Prof. Smt. SREEKALA R**
-*   **Project Guide**: **Mrs. ROSE JOSE** (Assistant Professor)
-*   **Project Team**: Vipin Krishna T.P, Muhammed Sinan P.S, Devadath C.M, Hana, Aparna T.M, Kiran.
-
----
 
 <div align="center">
 
