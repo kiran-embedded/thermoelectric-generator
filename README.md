@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="svg/premium-branding.png" width="400" alt="TEG Premium Branding" />
+
 # 💎 Thermoelectric Generator: Electricity from Heat
 ### A Fusion of Applied Physics & High-End Web Engineering
 
@@ -17,19 +19,19 @@
 
 ## 🌊 Liquid Glass & Gold Shader Aesthetics
 
-This project transcends traditional academic reporting by implementing a **Custom UI Engine**. The digital experience features:
+While the **Academic Report** focuses on clean, high-contrast typography for university submission, the **Digital Presentation Engine** implements a **Custom Shader-Inspired UI**:
 
-*   **Liquid Glass Shaders**: Glassmorphism effects with real-time backdrop filtering, creating a translucent, fluid interface that feels alive.
-*   **Gold Shiny Animations**: Specialized CSS3 keyframes that simulate metallic luster and "shiny" light sweeps across critical data points.
-*   **Animated Mesh Gradients**: Deep-background shaders that drift across the presentation, ensuring a premium, high-stakes visual feel.
+*   **Liquid Glass Shaders**: Real-time backdrop filtering (glassmorphism) in the presentation creates a translucent, fluid interface.
+*   **Gold Shiny Keyframes**: Specialized CSS3 animations that simulate metallic luster and "shiny" light sweeps across critical components.
+*   **Animated Mesh Gradients**: Deep-background shaders that drift across the presentation slides for a premium feel.
 
 ---
 
 ## 🛠️ Technical Architecture (The Web-Path)
 
-Traditional tools like **PowerPoint** and **Word** were bypassed due to significant limitations in layout precision and the manual time-sink of formatting. Instead, a **"Web-to-Print"** engine was developed:
+Traditional tools like **PowerPoint** and **Word** were bypassed due to their lack of layout precision and manual time-sink. Instead, we built a custom **"Web-to-Print"** workflow:
 
-### The Tree Flow Diagram
+### System Architecture Flow
 ```mermaid
 graph TD
     A[<b>Applied Physics</b><br/>Seebeck Effect Theory] --> B[<b>HTML5 Structure</b><br/>Semantic A4 Layouts]
@@ -38,12 +40,12 @@ graph TD
     D --> E[<b>Final Output</b><br/>Pixel-Perfect PDF Book]
     D --> F[<b>High-End Assets</b><br/>4K PNG Visualizations]
     
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#00f2ff,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#ffd700,stroke:#333,stroke-width:4px,color:#000
-    style E fill:#fff,stroke:#333,stroke-width:2px,color:#000
-    style F fill:#fff,stroke:#333,stroke-width:2px,color:#000
+    style A fill:#D21B90,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#5C5CE6,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#00E5FF,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#FFD600,stroke:#333,stroke-width:4px,color:#000
+    style E fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
+    style F fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
 ```
 
 ---
@@ -70,14 +72,6 @@ This research is conducted under the esteemed standards of **Calicut University*
 *   **Head of Dept**: **Asst. Prof. Smt. Sreeakala R**
 
 **Project Team:** Vipin Krishna T.P, Muhammed Sinan P.S, Devadath C.M, Hana, Aparna T.M, Kiran.
-
----
-
-## 📈 Executive Summary
-
-*   **Self-Sustaining**: The system powers its own 12V active cooling fan through harvesting extreme heat.
-*   **Verification**: Successfully charged modern smartphones directly from a candle flame.
-*   **Innovation**: Replaced standard report-writing tools with a custom automated web-engine for superior documentation.
 
 ---
 
