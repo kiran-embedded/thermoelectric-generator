@@ -1,5 +1,6 @@
-<svg width="100%" height="100" viewBox="0 0 1500 100" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="160" viewBox="0 0 1500 160" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <!-- Gold Gradient for Main Title -->
     <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#bf953f" />
       <stop offset="25%" stop-color="#fcf6ba" />
@@ -9,9 +10,20 @@
       <animate attributeName="x1" from="-100%" to="100%" dur="3s" repeatCount="indefinite" />
       <animate attributeName="x2" from="0%" to="200%" dur="3s" repeatCount="indefinite" />
     </linearGradient>
+
+    <!-- Platinum Blue Gradient for Subtitle -->
+    <linearGradient id="platinumBlueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e5eaf5" />
+      <stop offset="25%" stop-color="#a3bcf9" />
+      <stop offset="50%" stop-color="#4facfe" />
+      <stop offset="75%" stop-color="#a3bcf9" />
+      <stop offset="100%" stop-color="#e5eaf5" />
+      <animate attributeName="x1" from="-100%" to="100%" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="x2" from="0%" to="200%" dur="4s" repeatCount="indefinite" />
+    </linearGradient>
     
     <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -21,15 +33,28 @@
   
   <rect width="100%" height="100%" fill="transparent" />
   
-  <!-- Text with marquee-style sliding animation to ensure full visibility -->
-  <text y="60%" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="45" 
+  <!-- Main Title: Thermoelectric Generator (Gold) -->
+  <text y="60" font-family="'Inter', Arial, sans-serif" font-weight="950" font-size="55" 
         fill="url(#goldGradient)" filter="url(#glow)" 
-        style="text-transform: uppercase; letter-spacing: 5px; white-space: nowrap;">
+        style="text-transform: uppercase; letter-spacing: 8px; white-space: nowrap;">
     Thermoelectric Generator
     <animate 
       attributeName="x" 
-      values="1500; -800" 
-      dur="12s" 
+      values="1500; -1200" 
+      dur="14s" 
+      repeatCount="indefinite" />
+  </text>
+
+  <!-- Subtitle: Electricity From Heat (Platinum Blue) -->
+  <text y="130" font-family="'Inter', Arial, sans-serif" font-weight="800" font-size="32" 
+        fill="url(#platinumBlueGradient)" filter="url(#glow)" 
+        style="text-transform: uppercase; letter-spacing: 12px; white-space: nowrap;">
+    Electricity From Heat
+    <animate 
+      attributeName="x" 
+      values="1500; -1200" 
+      dur="14s" 
+      begin="1s"
       repeatCount="indefinite" />
   </text>
 </svg>
